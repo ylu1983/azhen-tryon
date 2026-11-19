@@ -4,8 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; connect-src 'self'; img-src 'self' data: blob:; style-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'"
+    />
+    <meta
       name="description"
-      content="阿蓁の衣舖子免費搭配試衣間：照片留在你的裝置，選衣、混搭、拖曳調整，再下載搭配圖。"
+      content="阿蓁の衣舖子免費身形對位試衣間：照片留在你的裝置，衣服隨肩腰腿部變形，選衣混搭，再下載搭配示意。"
     />
     <meta name="theme-color" content="#616249" />
     <title>免費搭配試衣間｜阿蓁の衣舖子</title>
@@ -51,7 +55,7 @@
           <p>
             放上自己的照片，挑選阿蓁的衣服。<br />上下身自由搭，再慢慢調成喜歡的樣子。
           </p>
-          <a href="#how-it-works">免費疊衣預覽，不是 AI 換衣 ↓</a>
+          <a href="#how-it-works">免費身形對位，照片不離開裝置 ↓</a>
         </div>
       </section>
       <section id="fitting-room" class="room shell" aria-label="免費搭配試衣間">
@@ -77,7 +81,7 @@
             ><button class="text-button" id="clear-photo">移除照片</button>
           </div>
           <div class="photo-tips">
-            <p>✓ 正面站立，手臂自然放鬆</p>
+            <p>✓ 正面站立，手臂稍微離開身體</p>
             <p>✓ 光線明亮，身體不要被遮住</p>
             <p>✓ 全身入鏡，更容易對齊衣服</p>
           </div>
@@ -109,10 +113,10 @@
               width="720"
               height="960"
               tabindex="0"
-              aria-label="搭配畫布：拖曳選取的衣服移動位置，或使用下方調整控制。這是疊圖，不是真實換衣。"
+              aria-label="身形對位試衣鏡：衣服隨肩腰腿部變形。可校正身形標記，或拖曳與微調衣服；非生成式 AI 換衣。"
             ></canvas
             ><span class="image-label" id="image-label"
-              >店內模特兒示範・換成自己的照片試試</span
+              >店內模特兒・已對位，可直接選衣試試</span
             >
           </div>
           <div class="mirror-toolbar">
@@ -126,6 +130,62 @@
             ><button class="text-button" id="reset-layer">重設位置</button>
           </div>
           <div class="generation-area">
+            <section class="body-tools" aria-label="身形對位設定">
+              <h3>跟著身形，換個搭配</h3>
+              <p id="body-status" role="status">
+                模特兒已完成身形對位。也可以換成自己的正面全身照。
+              </p>
+              <div class="body-actions">
+                <button
+                  class="text-button"
+                  id="calibrate-button"
+                  aria-pressed="false"
+                >
+                  校正身形標記
+                </button>
+                <button class="text-button" id="detect-button" disabled>
+                  重新自動辨識
+                </button>
+              </div>
+              <div id="body-editor" hidden>
+                <p class="muted">
+                  把 8
+                  個點放在畫面左右的肩、腰、膝與腳踝。拖曳圓點，或在下方選點調整；方向鍵也能移動所選標記。
+                </p>
+                <label for="body-point">要調整的標記</label
+                ><select id="body-point"></select>
+                <div class="control-grid">
+                  <label
+                    >左右位置 <output id="body-x-value"></output
+                    ><input
+                      id="body-x"
+                      type="range"
+                      min="0"
+                      max="720"
+                      value="360"
+                  /></label>
+                  <label
+                    >上下位置 <output id="body-y-value"></output
+                    ><input
+                      id="body-y"
+                      type="range"
+                      min="0"
+                      max="960"
+                      value="400"
+                  /></label>
+                </div>
+              </div>
+              <label class="preserve-option"
+                ><input
+                  id="preserve-body"
+                  type="checkbox"
+                  checked
+                />保留原照的臉、頭髮與手臂遮擋</label
+              >
+              <p class="muted fine">
+                需自動辨識成功才能保留遮擋；若蓋住新衣的袖子，可關閉這個選項。
+              </p>
+            </section>
             <div
               id="layer-tabs"
               class="layer-tabs"
@@ -133,7 +193,7 @@
               aria-label="選擇要調整的衣服"
             ></div>
             <details class="adjustments" id="adjustments" open>
-              <summary>調整衣服大小與位置</summary>
+              <summary>微調已對位的衣服</summary>
               <div class="control-grid">
                 <label
                   >左右位置 <output id="x-value"></output
@@ -195,13 +255,13 @@
               </p>
             </details>
             <p class="service-notice" id="service-notice" role="status">
-              這是免費疊衣示意，不會自動貼合身形或移除原本的衣服。請手動拖曳、調整比例。
+              衣服會依肩、腰與腿部對位變形，但不會重畫身體或擦除原衣。請選貼身、正面全身照；原本寬鬆的衣服仍可能露出。
             </p>
             <button class="primary-button" id="download-button" disabled>
               <span>下載這套搭配</span><span aria-hidden="true">↓</span>
             </button>
             <p class="fine muted" id="generation-hint">
-              照片不會離開你的裝置。下載的圖會標示「疊衣示意・非 AI 換衣」。
+              照片不會離開你的裝置。下載的圖會標示「身形對位示意・非 AI 換衣」。
             </p>
           </div>
         </section>
@@ -257,13 +317,13 @@
           </p>
           <p class="catalog-disclosure">
             27
-            套素材取自店內穿搭圖鑑，衣服以輪廓剪裁擷取，部分邊緣可能含背景。洋裝僅提供整套選擇。
+            套素材取自店內穿搭圖鑑，已在製作時去除模特兒皮膚與背景；手部遮住的布料無法補回，邊緣仍可能有缺口。洋裝僅提供整套選擇。
           </p>
           <details class="own-garment">
             <summary>想試自己的衣服照片？</summary>
             <p class="muted">
               可加入本機照片；透明背景 PNG
-              最適合。一般照片會保留原本背景，本版不自動去背。
+              最適合，會用基本衣型對位，仍需微調。一般照片會保留原本背景，本版不自動去背。
             </p>
             <label for="garment-category">單品部位</label
             ><select id="garment-category">
@@ -288,12 +348,17 @@
         </div>
         <div class="how-copy">
           <p>
-            <strong>這是免費疊衣，不是 AI 換衣。</strong
-            >衣服像貼紙一樣放在照片上，可分別調整上身與下身的位置、寬度、長度及角度；不會自動貼合姿勢、遮住原衣物或呈現真實布料與尺寸。
+            <strong>免費身形對位，不是生成式 AI 換衣。</strong
+            >瀏覽器會在裝置上辨識肩、腰與腿部，將衣服分區變形到身形上，並保留原照的臉與手臂；辨識不準時可以手動校正。不會移除原衣、補出被遮住的布料，或呈現真實立體垂墜與合身度；請用正面直立全身照，側身、交叉腿與寬鬆原衣不適合。
           </p>
           <p>
             <strong>你的照片，留在你這裡。</strong
             >照片只在瀏覽器記憶體處理，不傳到網站伺服器或第三方、不建立相簿、不寫入瀏覽器儲存空間。移除照片、重新整理或關閉頁面，就會清除本次照片與搭配；你主動下載的檔案會留在裝置上。
+          </p>
+          <p>
+            第一次自動對位會從本站下載約 40 MB
+            的免費辨識模型，不需要帳號或付款。建議使用新版 Chrome、Edge 或
+            Safari；裝置不支援時仍可手動定位。
           </p>
           <p>
             目前先用圖鑑的 27

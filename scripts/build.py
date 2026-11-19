@@ -2,7 +2,7 @@
 import json
 import shutil
 from pathlib import Path
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageDraw, ImageFilter, ImageChops
 
 ROOT = Path(__file__).resolve().parents[1]
 # Shoulder left/right, shoulder Y, hem Y, bottom left/right, waist Y, ankle/hem Y.
@@ -25,35 +25,26 @@ BOUNDS = {
 }
 
 
-def cutout(image, points, path):
+def cutout(image, points, path, clothing):
     mask = Image.new('L', image.size)
     ImageDraw.Draw(mask).polygon([(round(x*image.width/100),round(y*image.height/100)) for x,y in points],fill=255)
-    mask = mask.filter(ImageFilter.GaussianBlur(1))
+    mask = ImageChops.multiply(mask,clothing.resize(image.size)).filter(ImageFilter.GaussianBlur(.6))
     result = image.convert('RGBA'); result.putalpha(mask)
-    result = result.crop(mask.getbbox()); result.thumbnail((650,900))
+    box=mask.getbbox()
+    if not box:raise ValueError(f'Empty garment: {path}')
+    result = result.crop(box); result.thumbnail((650,900))
     result.save(path,'WEBP',quality=91,method=6)
+    return [box[0],box[1],box[2]-box[0],box[3]-box[1]]
 
 
 def build():
     catalog=json.loads((ROOT/'static/catalog.json').read_text())
+    metadata=json.loads((ROOT/'static/garments/fit.json').read_text())
     for item in catalog:
-        number=item['id']; l,r,t,h,bl,br,waist,hem=BOUNDS[number]; c=(l+r)/2; w=r-l
-        image=Image.open(ROOT/f'static/assets/outfit-{number:02d}-large.webp')
-        if item['onePiece']:
-            shape=[(l,t),(c-w*.18,t+1),(c,t+5),(c+w*.18,t+1),(r,t),
-                   (r+1,t+17),(r-4,t+20),(br,hem),(bl,hem),(l+4,t+20),(l-1,t+17)]
-            cutout(image,shape,ROOT/f'static/garments/{number:02d}-dress.webp')
-        else:
-            top=[(l,t),(c-w*.16,t+2),(c,t+5),(c+w*.16,t+2),(r,t),
-                 (r+1,min(t+14,h-2)),(r-4,min(t+15,h-2)),(r-3,h),(l+3,h),
-                 (l+4,min(t+15,h-2)),(l-1,min(t+14,h-2))]
-            cutout(image,top,ROOT/f'static/garments/{number:02d}-tops.webp')
-            if 'bottoms' in item['categories']:
-                skirt='裙' in item['name']
-                bottom=[(bl+2,waist),(br-2,waist),(br,hem),(bl,hem)] if skirt else [
-                    (bl+2,waist),(br-2,waist),(br,hem),(c+1,hem),(c,waist+(hem-waist)*.35),
-                    (c-1,hem),(bl,hem)]
-                cutout(image,bottom,ROOT/f'static/garments/{number:02d}-bottoms.webp')
+        keys=['dress'] if item['onePiece'] else [key for key in item['categories'] if key!='auto']
+        for key in keys:
+            name=f"{item['id']:02d}-{key}"
+            assert name in metadata and (ROOT/f'static/garments/{name}.webp').exists(),name
     output=ROOT/'docs'; output.mkdir(exist_ok=True)
     shutil.copy2(ROOT/'index.html',output/'index.html')
     shutil.copytree(ROOT/'static',output/'static',dirs_exist_ok=True)
