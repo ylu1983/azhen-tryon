@@ -252,7 +252,7 @@ $("upload-button").onclick = () => $("photo-input").click();
 $("replace-photo").onclick = () => $("photo-input").click();
 $("photo-input").onchange = (event) => setPhoto(event.target.files[0]);
 $("clear-photo").onclick = async () => {
-  photoRevision++;
+  const revision = ++photoRevision;
   loadRevision++;
   state.base = null;
   state.personal = false;
@@ -264,8 +264,11 @@ $("clear-photo").onclick = async () => {
   $("upload-button").classList.remove("has-photo");
   update();
   try {
-    state.base = await imageFrom("static/assets/outfit-11-large.webp");
-    if (!state.personal) draw();
+    const base = await imageFrom("static/assets/outfit-11-large.webp");
+    if (revision === photoRevision && !state.personal) {
+      state.base = base;
+      draw();
+    }
   } catch (error) {
     toast(error.message);
   }
