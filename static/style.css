@@ -316,6 +316,7 @@ h1 {
   object-fit: contain;
 }
 .image-label {
+  pointer-events: none;
   position: absolute;
   bottom: 12px;
   left: 12px;

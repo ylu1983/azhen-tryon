@@ -159,6 +159,7 @@ function update() {
     : "校正身形標記";
   $("calibrate-button").setAttribute("aria-pressed", String(state.calibrating));
   $("body-editor").hidden = !state.calibrating;
+  $("image-label").hidden = state.calibrating && !state.original;
   $("preserve-body").checked = state.preserve;
   $("preserve-body").disabled = !state.foreground;
   if (state.body) {
