@@ -1,0 +1,11 @@
+{
+  "name": "azhen-tryon",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/body-fit.test.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
