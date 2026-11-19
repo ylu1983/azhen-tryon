@@ -51,6 +51,8 @@ function renderSelection() {
 }
 
 function renderCatalog() {
+  const scrollTop = $("catalog").scrollTop;
+  const focusedId = document.activeElement?.closest(".outfit-card")?.dataset.outfit;
   const query = $("search").value.trim().toLowerCase();
   const filtered = state.catalog.filter((item) => item.categories.includes(state.category)
     && (state.occasion === "全部" || item.occasions.includes(state.occasion))
@@ -62,6 +64,7 @@ function renderCatalog() {
     const button = document.createElement("button");
     button.className = `outfit-card${selected ? " selected" : ""}`;
     button.type = "button";
+    button.dataset.outfit = String(item.id);
     button.disabled = state.busy;
     button.setAttribute("aria-pressed", String(selected));
     button.setAttribute("aria-label", `${selected ? "已選取：" : "選擇："}${item.name}`);
@@ -84,6 +87,8 @@ function renderCatalog() {
     });
     return button;
   }));
+  $("catalog").scrollTop = scrollTop;
+  if (focusedId) $("catalog").querySelector(`[data-outfit="${focusedId}"]`)?.focus({ preventScroll: true });
 }
 
 function renderMirror() {
@@ -210,7 +215,7 @@ async function init() {
     $("mode-label").textContent = "暫時無法連線";
     $("service-notice").textContent = "試衣間暫時無法連線，請重新整理；照片不會送出。";
     $("catalog").textContent = "衣櫥載入失敗，請重新整理頁面。";
-    renderSelection();
+    $("generate-text").textContent = "試衣間暫時無法連線";
   }
 }
 init();
