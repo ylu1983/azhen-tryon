@@ -2,430 +2,244 @@
   {
     "id": 1,
     "name": "豹紋圖案 T 恤＋黑色皮質寬褲",
-    "occasions": [
-      "日常",
-      "休閒"
-    ],
+    "occasions": ["日常", "休閒"],
     "concerns": [],
     "copy": "豹紋不用全身，點到就很有氣勢。咖啡色豹紋 T 恤配黑色皮質寬褲，休閒裡帶一點帥，日常出門直接穿。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 2,
     "name": "咖啡色襯衫＋米白針織上衣",
-    "occasions": [
-      "日常"
-    ],
+    "occasions": ["日常"],
     "concerns": [],
     "copy": "天氣忽冷忽熱，這種兩件式最實用。咖啡色襯衫裡面搭米白針織，顏色溫和，怎麼搭都不出錯。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops"
-    ]
+    "categories": ["auto", "tops"]
   },
   {
     "id": 3,
     "name": "黑色開襟針織外套＋米色長裙",
-    "occasions": [
-      "正式",
-      "日常"
-    ],
+    "occasions": ["正式", "日常"],
     "concerns": [],
     "copy": "想看起來溫柔一點，選這一套。黑色開襟外套配米色長裙，簡單乾淨，正式一點的場合也 OK。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 4,
     "name": "白色拉鍊外套＋藍白層次長裙",
-    "occasions": [
-      "日常"
-    ],
+    "occasions": ["日常"],
     "concerns": [],
     "copy": "白色最怕穿起來無聊，這套不會。拉鍊外套加上藍白層次，裙子走動時很有層次感。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 5,
     "name": "笑臉口袋牛仔襯衫＋淺灰層次上衣和寬褲",
-    "occasions": [
-      "休閒",
-      "日常"
-    ],
+    "occasions": ["休閒", "日常"],
     "concerns": [],
     "copy": "口袋那個笑臉是整套的亮點。牛仔襯衫配淺灰層次上衣和寬褲，輕鬆又不邋遢。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 6,
     "name": "淺灰西裝外套＋綠白斜紋上衣＋亮片牛仔寬褲",
-    "occasions": [
-      "通勤",
-      "休閒"
-    ],
+    "occasions": ["通勤", "休閒"],
     "concerns": [],
     "copy": "上班和出門玩，同一套就能切換。淺灰西裝外套配綠白斜紋上衣，下身亮片牛仔寬褲，低調中帶一點亮。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 7,
     "name": "鵝黃打結襯衫＋白色寬褲",
-    "occasions": [
-      "日常",
-      "假日"
-    ],
+    "occasions": ["日常", "假日"],
     "concerns": [],
     "copy": "鵝黃色一穿，整個人都亮起來。打結襯衫配白色寬褲，清爽又顯精神，夏天穿剛好。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 8,
     "name": "白色蕾絲襯衫＋彩色圖案 T 恤＋亮片牛仔寬褲",
-    "occasions": [
-      "休閒",
-      "日常"
-    ],
+    "occasions": ["休閒", "日常"],
     "concerns": [],
     "copy": "蕾絲不是只能走甜美路線。白色蕾絲襯衫罩著圖案 T 恤，配亮片牛仔寬褲，休閒裡有細節。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 9,
     "name": "黑色透膚針織上衣＋淺藍寬褲",
-    "occasions": [
-      "日常",
-      "假日"
-    ],
+    "occasions": ["日常", "假日"],
     "concerns": [],
     "copy": "透膚穿得好，涼快又有型。黑色透膚針織配淺藍寬褲，顏色對比乾淨，夏天很適合。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 10,
     "name": "咖啡色西裝外套＋黑色圖案 T 恤＋黑色長裙",
-    "occasions": [
-      "通勤",
-      "日常"
-    ],
-    "concerns": [
-      "小腹明顯"
-    ],
+    "occasions": ["通勤", "日常"],
+    "concerns": ["小腹明顯"],
     "copy": "想帥一點，又不想太正式，就這樣搭。咖啡色西裝外套配黑色圖案 T 恤和黑色長裙，有個性又好走路。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 11,
     "name": "白色襯衫＋米色寬褲",
-    "occasions": [
-      "日常",
-      "通勤"
-    ],
+    "occasions": ["日常", "通勤"],
     "concerns": [],
     "copy": "衣櫃裡一定要有一套這種基本款。白色襯衫配米色寬褲，乾淨、耐看，怎麼搭都對。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 12,
     "name": "藕紫色圖案無袖長洋裝",
-    "occasions": [
-      "日常",
-      "假日"
-    ],
-    "concerns": [
-      "手臂粗不敢穿無袖"
-    ],
+    "occasions": ["日常", "假日"],
+    "concerns": ["手臂粗不敢穿無袖"],
     "copy": "一件式最省事，穿上就能出門。藕紫色圖案無袖長洋裝，顏色溫柔，長度也很好走。",
     "onePiece": true,
-    "categories": [
-      "auto"
-    ]
+    "categories": ["auto"]
   },
   {
     "id": 13,
     "name": "淺紫色層次荷葉邊上衣＋黑色寬褲",
-    "occasions": [
-      "日常"
-    ],
+    "occasions": ["日常"],
     "concerns": [],
     "copy": "荷葉邊不是只能甜，這套就很俐落。淺紫色層次上衣配黑色寬褲，上身有設計感，下身穩住。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 14,
     "name": "淺藍碎花荷葉邊短洋裝",
-    "occasions": [
-      "假日",
-      "日常"
-    ],
-    "concerns": [
-      "只敢穿黑怕亮色顯老"
-    ],
+    "occasions": ["假日", "日常"],
+    "concerns": ["只敢穿黑怕亮色顯老"],
     "copy": "碎花一穿，心情先好一半。淺藍碎花荷葉邊短洋裝，輕盈好走，假日出門很適合。",
     "onePiece": true,
-    "categories": [
-      "auto"
-    ]
+    "categories": ["auto"]
   },
   {
     "id": 15,
     "name": "酒紅色拉鍊連帽外套＋粉色寬褲",
-    "occasions": [
-      "日常"
-    ],
+    "occasions": ["日常"],
     "concerns": [],
     "copy": "酒紅配粉色，比想像中好看。拉鍊連帽外套配粉色寬褲，保暖又不厚重。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 16,
     "name": "牛仔無袖背心＋米色蕾絲長裙",
-    "occasions": [
-      "休閒",
-      "日常"
-    ],
+    "occasions": ["休閒", "日常"],
     "concerns": [],
     "copy": "牛仔配蕾絲，剛柔剛好一半一半。無袖牛仔背心配米色蕾絲長裙，休閒裡帶一點女人味。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 17,
     "name": "灰色豹紋襯衫＋螢光綠內搭＋米白寬褲",
-    "occasions": [
-      "休閒"
-    ],
-    "concerns": [
-      "只敢穿黑怕亮色顯老"
-    ],
+    "occasions": ["休閒"],
+    "concerns": ["只敢穿黑怕亮色顯老"],
     "copy": "豹紋配螢光綠，膽子大一點就很好看。灰色豹紋襯衫裡面搭螢光綠，下身米白寬褲拉回來，整體不亂。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 18,
     "name": "米色外套＋黑色蕾絲上衣＋米色短褲",
-    "occasions": [
-      "日常",
-      "休閒"
-    ],
+    "occasions": ["日常", "休閒"],
     "concerns": [],
     "copy": "短褲不是只能夏天穿，這套就是證明。米色外套配黑色蕾絲上衣和米色短褲，俐落又有細節。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 19,
     "name": "白色圖案長袖 T 恤＋淺色牛仔長裙",
-    "occasions": [
-      "日常",
-      "假日"
-    ],
+    "occasions": ["日常", "假日"],
     "concerns": [],
     "copy": "長裙配長袖 T 恤，是最不費力的好看。白色圖案 T 恤配淺色牛仔長裙，日常、假日都能穿。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 20,
     "name": "黑色網狀開襟外套＋黑色寬褲",
-    "occasions": [
-      "日常"
-    ],
-    "concerns": [
-      "只敢穿黑怕亮色顯老"
-    ],
+    "occasions": ["日常"],
+    "concerns": ["只敢穿黑怕亮色顯老"],
     "copy": "全身黑，重點在材質。黑色網狀開襟外套配黑色寬褲，透一點、輕一點，不會悶。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 21,
     "name": "亮藍襯衫＋牛仔寬褲",
-    "occasions": [
-      "日常",
-      "休閒"
-    ],
-    "concerns": [
-      "只敢穿黑怕亮色顯老"
-    ],
+    "occasions": ["日常", "休閒"],
+    "concerns": ["只敢穿黑怕亮色顯老"],
     "copy": "藍色穿對了，氣色直接加分。亮藍襯衫配牛仔寬褲，顏色飽和但不難搭，是這批裡最搶眼的一套。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 22,
     "name": "白色襯衫洋裝＋黑色細腰帶",
-    "occasions": [
-      "正式",
-      "日常"
-    ],
+    "occasions": ["正式", "日常"],
     "concerns": [],
     "copy": "白色洋裝加一條黑腰帶，比例馬上出來。襯衫洋裝配黑色細腰帶，正式、休閒都能穿，店面試穿最準。（照片裡模特兒另戴草帽＋珍珠項鍊，不在套裝內）",
     "onePiece": true,
-    "categories": [
-      "auto"
-    ]
+    "categories": ["auto"]
   },
   {
     "id": 23,
     "name": "粉色打結襯衫＋藕紫色層次長裙",
-    "occasions": [
-      "日常",
-      "假日"
-    ],
+    "occasions": ["日常", "假日"],
     "concerns": [],
     "copy": "粉色和藕紫放在一起，溫柔但不幼稚。打結襯衫配層次長裙，裙子走動時很好看。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 24,
     "name": "黑色開襟外套＋灰黑條紋短背心＋黑色抽繩寬褲",
-    "occasions": [
-      "日常",
-      "休閒"
-    ],
+    "occasions": ["日常", "休閒"],
     "concerns": [],
     "copy": "想穿得輕鬆，又不想看起來隨便。黑色開襟外套配條紋短背心和抽繩寬褲，舒服、好走、有型。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 25,
     "name": "米白外套＋淺色綁帶上衣＋白色寬褲",
-    "occasions": [
-      "日常"
-    ],
+    "occasions": ["日常"],
     "concerns": [],
     "copy": "全身淺色，最考驗乾淨度，這套做到了。米白外套配白色寬褲，帽子和珍珠項鍊是點綴。（照片裡模特兒另戴漁夫帽＋珍珠項鍊，不在套裝內）",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 26,
     "name": "白色網狀長袖上衣＋黑色寬褲",
-    "occasions": [
-      "日常"
-    ],
+    "occasions": ["日常"],
     "concerns": [],
     "copy": "白配黑，永遠不會錯。白色網狀長袖上衣配黑色寬褲，涼快、輕盈，日常很好搭。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   },
   {
     "id": 27,
     "name": "藍白條紋襯衫＋米白針織上衣＋黑色寬褲",
-    "occasions": [
-      "通勤",
-      "日常"
-    ],
+    "occasions": ["通勤", "日常"],
     "concerns": [],
     "copy": "條紋襯衫當外套穿，實用度直接翻倍。藍白條紋襯衫罩著米白針織，配黑色寬褲，通勤、出門都適合。",
     "onePiece": false,
-    "categories": [
-      "auto",
-      "tops",
-      "bottoms"
-    ]
+    "categories": ["auto", "tops", "bottoms"]
   }
 ]

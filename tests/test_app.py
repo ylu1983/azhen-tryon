@@ -150,6 +150,23 @@ class GatewayTests(unittest.TestCase):
                     self.assertEqual(self.submit(photo=image).status_code, 400)
             generate.assert_not_called()
 
+    def test_deleting_active_job_prevents_second_chargeable_step(self):
+        entered, release = threading.Event(), threading.Event()
+        def first_step(*args):
+            entered.set()
+            release.wait(2)
+            return OUTPUT
+        with patch.object(module, "generate", side_effect=first_step) as generate:
+            response = self.submit(steps=[dict(id=7, category="tops"), dict(id=9, category="bottoms")])
+            try:
+                self.assertTrue(entered.wait(1))
+                self.assertEqual(self.client.delete("/api/tryons/" + response.json["id"],
+                    headers={"X-CSRF-Token": self.csrf}).status_code, 204)
+            finally:
+                release.set()
+            self.app.extensions["tryon"]["executor"].shutdown(wait=True)
+            self.assertEqual(generate.call_count, 1)
+
     def test_catalog_assets_are_complete_and_categories_valid(self):
         self.assertEqual(len(module.CATALOG), 27)
         self.assertEqual(len(module.BY_ID), 27)
