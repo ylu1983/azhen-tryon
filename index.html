@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="阿蓁の衣舖子免費搭配試衣間：照片留在你的裝置，選衣、混搭、拖曳調整，再下載搭配圖。"
+    />
+    <meta name="theme-color" content="#616249" />
+    <title>免費搭配試衣間｜阿蓁の衣舖子</title>
+    <link rel="icon" href="static/icon.svg" />
+    <link rel="apple-touch-icon" href="static/assets/icon-192.png" />
+    <link rel="manifest" href="static/manifest.json" />
+    <link rel="stylesheet" href="static/style.css" />
+    <script type="module" src="static/app.js"></script>
+  </head>
+  <body>
+    <a href="#fitting-room" class="skip">跳到試衣間</a>
+    <header class="site-header shell">
+      <a class="brand" href="./" aria-label="阿蓁の衣舖子首頁"
+        ><img
+          src="static/assets/logo.png"
+          alt="阿蓁の衣舖子"
+          width="190"
+          height="53"
+      /></a>
+      <nav aria-label="主要導覽">
+        <a
+          href="https://ylu1983.github.io/azhen-lookbook/"
+          target="_blank"
+          rel="noopener"
+          >穿搭圖鑑 ↗</a
+        ><a
+          href="https://www.instagram.com/azhen_2026/"
+          target="_blank"
+          rel="noopener"
+          >Instagram ↗</a
+        >
+      </nav>
+    </header>
+    <main>
+      <section class="intro shell">
+        <div>
+          <p class="eyebrow">AZHEN · YOUR PERSONAL FITTING ROOM</p>
+          <h1>
+            一點新搭配，<br />找到更喜歡的自己<span class="olive">。</span>
+          </h1>
+        </div>
+        <div class="intro-note">
+          <p>
+            放上自己的照片，挑選阿蓁的衣服。<br />上下身自由搭，再慢慢調成喜歡的樣子。
+          </p>
+          <a href="#how-it-works">免費疊衣預覽，不是 AI 換衣 ↓</a>
+        </div>
+      </section>
+      <section id="fitting-room" class="room shell" aria-label="免費搭配試衣間">
+        <aside class="personal-panel panel">
+          <div class="section-heading">
+            <span class="step-no">01</span>
+            <h2>你的照片</h2>
+          </div>
+          <p class="muted">選一張正面全身照，<br />開始自己的搭配練習。</p>
+          <input
+            type="file"
+            id="photo-input"
+            accept="image/jpeg,image/png,image/webp"
+            hidden
+          />
+          <button class="upload-zone" id="upload-button">
+            <span class="upload-icon" aria-hidden="true">＋</span
+            ><strong id="upload-title">放上自己的照片</strong
+            ><span>JPG、PNG、WebP<br />最大 10 MB</span>
+          </button>
+          <div class="photo-actions" id="photo-actions" hidden>
+            <button class="text-button" id="replace-photo">更換照片</button
+            ><button class="text-button" id="clear-photo">移除照片</button>
+          </div>
+          <div class="photo-tips">
+            <p>✓ 正面站立，手臂自然放鬆</p>
+            <p>✓ 光線明亮，身體不要被遮住</p>
+            <p>✓ 全身入鏡，更容易對齊衣服</p>
+          </div>
+          <div class="privacy-note">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              aria-hidden="true"
+            >
+              <rect x="5" y="10" width="14" height="11" rx="2" />
+              <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+            </svg>
+            <p>照片只留在這個瀏覽器。<br />不送出、不儲存，關閉頁面就清除。</p>
+          </div>
+        </aside>
+        <section class="mirror-panel panel" aria-label="搭配畫布">
+          <div class="mirror-heading">
+            <div class="section-heading">
+              <span class="step-no">02</span>
+              <h2>我的試衣鏡</h2>
+            </div>
+            <span class="mode-label">免費・本機處理</span>
+          </div>
+          <div class="mirror" id="mirror">
+            <canvas
+              id="canvas"
+              width="720"
+              height="960"
+              tabindex="0"
+              aria-label="搭配畫布：拖曳選取的衣服移動位置，或使用下方調整控制。這是疊圖，不是真實換衣。"
+            ></canvas
+            ><span class="image-label" id="image-label"
+              >店內模特兒示範・換成自己的照片試試</span
+            >
+          </div>
+          <div class="mirror-toolbar">
+            <button
+              class="text-button"
+              id="compare-button"
+              aria-pressed="false"
+            >
+              查看原照</button
+            ><span>拖曳衣服，就能移動位置</span
+            ><button class="text-button" id="reset-layer">重設位置</button>
+          </div>
+          <div class="generation-area">
+            <div
+              id="layer-tabs"
+              class="layer-tabs"
+              role="group"
+              aria-label="選擇要調整的衣服"
+            ></div>
+            <details class="adjustments" id="adjustments" open>
+              <summary>調整衣服大小與位置</summary>
+              <div class="control-grid">
+                <label
+                  >左右位置 <output id="x-value"></output
+                  ><input
+                    type="range"
+                    id="x-control"
+                    min="-200"
+                    max="920"
+                    value="360"
+                /></label>
+                <label
+                  >上下位置 <output id="y-value"></output
+                  ><input
+                    type="range"
+                    id="y-control"
+                    min="-200"
+                    max="1160"
+                    value="400"
+                /></label>
+                <label
+                  >寬度 <output id="width-value"></output
+                  ><input
+                    type="range"
+                    id="width-control"
+                    min="30"
+                    max="900"
+                    value="250"
+                /></label>
+                <label
+                  >長度 <output id="height-value"></output
+                  ><input
+                    type="range"
+                    id="height-control"
+                    min="30"
+                    max="1100"
+                    value="350"
+                /></label>
+                <label
+                  >旋轉 <output id="rotation-value"></output
+                  ><input
+                    type="range"
+                    id="rotation-control"
+                    min="-45"
+                    max="45"
+                    value="0"
+                /></label>
+                <label
+                  >透明度 <output id="opacity-value"></output
+                  ><input
+                    type="range"
+                    id="opacity-control"
+                    min="15"
+                    max="100"
+                    value="100"
+                /></label>
+              </div>
+              <p class="muted fine">
+                先選一件衣服再調整。畫布可用方向鍵移動，Shift＋方向鍵加快。
+              </p>
+            </details>
+            <p class="service-notice" id="service-notice" role="status">
+              這是免費疊衣示意，不會自動貼合身形或移除原本的衣服。請手動拖曳、調整比例。
+            </p>
+            <button class="primary-button" id="download-button" disabled>
+              <span>下載這套搭配</span><span aria-hidden="true">↓</span>
+            </button>
+            <p class="fine muted" id="generation-hint">
+              照片不會離開你的裝置。下載的圖會標示「疊衣示意・非 AI 換衣」。
+            </p>
+          </div>
+        </section>
+        <aside class="wardrobe-panel panel">
+          <div class="wardrobe-heading">
+            <div class="section-heading">
+              <span class="step-no">03</span>
+              <h2>阿蓁的衣櫥</h2>
+            </div>
+            <span class="muted" id="catalog-count">27 套穿搭</span>
+          </div>
+          <p class="muted wardrobe-description">
+            整套選，或把不同穿搭的上下身搭在一起。
+          </p>
+          <div class="category-tabs" role="group" aria-label="選衣部位">
+            <button class="active" data-category="auto" aria-pressed="true">
+              整套穿搭</button
+            ><button data-category="tops" aria-pressed="false">選上身</button
+            ><button data-category="bottoms" aria-pressed="false">
+              選下身
+            </button>
+          </div>
+          <div class="selection-box">
+            <div>
+              <span class="selection-title">這次想穿</span
+              ><button class="text-button" id="clear-selection">
+                清除選擇
+              </button>
+            </div>
+            <p id="selected-summary">從下面挑一套，放進試衣鏡吧</p>
+          </div>
+          <a class="back-to-mirror" href="#mirror">選好衣服，回到試衣鏡 ↑</a>
+          <label class="search-field"
+            ><span class="sr-only">搜尋衣服</span
+            ><span aria-hidden="true">⌕</span
+            ><input
+              type="search"
+              id="search"
+              placeholder="找襯衫、長裙、牛仔褲…"
+          /></label>
+          <div class="occasion-filter" role="group" aria-label="穿搭場合">
+            <button class="active" data-occasion="全部" aria-pressed="true">
+              全部</button
+            ><button data-occasion="日常" aria-pressed="false">日常</button
+            ><button data-occasion="通勤" aria-pressed="false">通勤</button
+            ><button data-occasion="假日" aria-pressed="false">假日</button>
+          </div>
+          <div class="catalog" id="catalog" aria-label="可選穿搭">
+            <p class="muted">衣櫥整理中…</p>
+          </div>
+          <p id="empty-catalog" class="empty-catalog muted" hidden>
+            沒有找到這樣的衣服，換個關鍵字試試。
+          </p>
+          <p class="catalog-disclosure">
+            27
+            套素材取自店內穿搭圖鑑，衣服以輪廓剪裁擷取，部分邊緣可能含背景。洋裝僅提供整套選擇。
+          </p>
+          <details class="own-garment">
+            <summary>想試自己的衣服照片？</summary>
+            <p class="muted">
+              可加入本機照片；透明背景 PNG
+              最適合。一般照片會保留原本背景，本版不自動去背。
+            </p>
+            <label for="garment-category">單品部位</label
+            ><select id="garment-category">
+              <option value="tops">上身</option>
+              <option value="bottoms">下身</option>
+              <option value="dress">洋裝／整件</option></select
+            ><input
+              type="file"
+              id="garment-input"
+              accept="image/jpeg,image/png,image/webp"
+              hidden
+            /><button id="garment-upload" class="text-button">
+              加入衣服照片 ＋
+            </button>
+          </details>
+        </aside>
+      </section>
+      <section id="how-it-works" class="how-section shell">
+        <div>
+          <p class="eyebrow">A LITTLE NOTE</p>
+          <h2>先找靈感，再到店試穿。</h2>
+        </div>
+        <div class="how-copy">
+          <p>
+            <strong>這是免費疊衣，不是 AI 換衣。</strong
+            >衣服像貼紙一樣放在照片上，可分別調整上身與下身的位置、寬度、長度及角度；不會自動貼合姿勢、遮住原衣物或呈現真實布料與尺寸。
+          </p>
+          <p>
+            <strong>你的照片，留在你這裡。</strong
+            >照片只在瀏覽器記憶體處理，不傳到網站伺服器或第三方、不建立相簿、不寫入瀏覽器儲存空間。移除照片、重新整理或關閉頁面，就會清除本次照片與搭配；你主動下載的檔案會留在裝置上。
+          </p>
+          <p>
+            目前先用圖鑑的 27
+            套穿搭做素材，之後可換成店家提供的單品照。喜歡的搭配，歡迎下載後私訊
+            <a
+              href="https://www.instagram.com/azhen_2026/"
+              target="_blank"
+              rel="noopener"
+              >@azhen_2026 ↗</a
+            >，實際版型與合身度以現場試穿為準。
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer class="shell">
+      <p>阿蓁の衣舖子 <span>每一次搭配，都更像自己。</span></p>
+      <a
+        href="https://www.instagram.com/azhen_2026/"
+        target="_blank"
+        rel="noopener"
+        >聊聊你的穿搭 ↗</a
+      >
+    </footer>
+    <div class="toast" id="toast" role="alert" hidden></div>
+  </body>
+</html>
