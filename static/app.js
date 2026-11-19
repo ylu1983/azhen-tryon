@@ -25,6 +25,14 @@ function steps() {
     .map((category) => ({ id: state.selected[category], category }));
 }
 
+function invalidateResult() {
+  if (state.result) {
+    state.result = null; state.showingOriginal = false;
+    discardJob(); renderMirror();
+    $("service-notice").textContent = "已更換選衣，請重新開始試穿以產生這套搭配的結果。";
+  }
+}
+
 function renderSelection() {
   const selected = steps();
   const labels = { auto: "整套", tops: "上身", bottoms: "下身" };
@@ -68,6 +76,7 @@ function renderCatalog() {
     if (item.onePiece) { const badge = document.createElement("span"); badge.className = "outfit-badge"; badge.textContent = "洋裝"; button.append(badge); }
     if (selected) { const check = document.createElement("span"); check.className = "outfit-check"; check.textContent = "✓"; check.setAttribute("aria-hidden", "true"); button.append(check); }
     button.addEventListener("click", () => {
+      invalidateResult();
       if (state.category === "auto") state.selected = { auto: item.id };
       else { delete state.selected.auto; state.selected[state.category] = item.id; }
       renderSelection();
@@ -95,7 +104,7 @@ async function discardJob() {
 async function readPhoto(file) {
   if (!file) return;
   if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
-    toast("請使用 JPG、PNG 或 WebP；iPhone 的 HEIC 請先轉成 JPG。"); return;
+    toast("請使用 JPG、PNG 或 WebP；iPhone 的 HEIC 請先轉成 JPG。"); $("photo-input").value = ""; return;
   }
   if (file.size > 10 * 1024 * 1024) { toast("照片超過 10 MB，請先縮小照片。"); $("photo-input").value = ""; return; }
   let bitmap;
@@ -169,7 +178,7 @@ $("clear-photo").addEventListener("click", async () => {
   renderMirror(); renderSelection(); await discardJob();
   toast(wasBusy ? "已移除本站照片紀錄；已送出的 AI 請求無法撤回，仍可能計費。" : "已移除照片與本站試穿紀錄。");
 });
-$("clear-selection").addEventListener("click", () => { state.selected = {}; renderSelection(); });
+$("clear-selection").addEventListener("click", () => { invalidateResult(); state.selected = {}; renderSelection(); });
 $("consent").addEventListener("change", renderSelection);
 $("search").addEventListener("input", renderCatalog);
 $("generate-button").addEventListener("click", generate);
