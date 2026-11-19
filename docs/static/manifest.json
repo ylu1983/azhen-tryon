@@ -1,0 +1,20 @@
+{
+  "name": "阿蓁の衣舖子｜線上試衣間",
+  "short_name": "阿蓁試衣間",
+  "start_url": "../",
+  "display": "standalone",
+  "background_color": "#fffefa",
+  "theme_color": "#616249",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
