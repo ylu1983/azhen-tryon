@@ -9,6 +9,9 @@ export const BODY_NAMES = [
   "左腳踝",
   "右腳踝",
 ];
+export function orderedLayers(layers) {
+  return ["bottoms", "tops", "dress"].map((key) => layers[key]).filter(Boolean);
+}
 export function imageBox(image, width = 720, height = 960) {
   const scale = Math.min(width / image.width, height / image.height);
   return {

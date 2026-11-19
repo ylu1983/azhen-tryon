@@ -1,4 +1,10 @@
-import { affine, bodyTriangles, imageBox, validPose } from "./body-fit.js";
+import {
+  affine,
+  bodyTriangles,
+  imageBox,
+  validPose,
+  orderedLayers,
+} from "./body-fit.js";
 /** Local-only renderer. A remote adapter must be a separate explicit opt-in. */
 export class LocalCompositor {
   constructor(canvas) {
@@ -82,9 +88,7 @@ export class LocalCompositor {
       );
     }
     if (!original)
-      for (const key of ["bottoms", "tops", "dress"]) {
-        const layer = layers[key];
-        if (!layer) continue;
+      for (const layer of orderedLayers(layers)) {
         ctx.save();
         ctx.translate(layer.x, layer.y);
         ctx.rotate((layer.rotation * Math.PI) / 180);

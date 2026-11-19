@@ -7,6 +7,7 @@ import {
   manualPose,
   validPose,
   customMetadata,
+  orderedLayers,
 } from "../static/body-fit.js";
 import { readFileSync } from "node:fs";
 const close = (a, b) => assert.ok(Math.abs(a - b) < 1e-6, `${a} != ${b}`);
@@ -15,6 +16,17 @@ const apply = (m, [x, y]) => [
   m[1] * x + m[3] * y + m[5],
 ];
 const source = manualPose({ width: 720, height: 960 });
+test("paint order and reverse hit-test order agree regardless of selection insertion order", () => {
+  const tops = { key: "tops" },
+    bottoms = { key: "bottoms" };
+  for (const layers of [
+    { tops, bottoms },
+    { bottoms, tops },
+  ]) {
+    assert.deepEqual(orderedLayers(layers), [bottoms, tops]);
+    assert.equal(orderedLayers(layers).reverse()[0], tops);
+  }
+});
 
 test("every mesh anchor maps to its corresponding shoulder/hip/leg region", () => {
   const target = source.map(([x, y], i) => [

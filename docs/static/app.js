@@ -5,6 +5,7 @@ import {
   manualPose,
   customMetadata,
   validPose,
+  orderedLayers,
 } from "./body-fit.js";
 import { analyzeBody } from "./on-device-body.js";
 const $ = (id) => document.getElementById(id);
@@ -481,7 +482,7 @@ $("canvas").onpointerdown = (event) => {
     }
     return;
   }
-  const layers = Object.values(state.layers).reverse();
+  const layers = orderedLayers(state.layers).reverse();
   const layer = layers.find((layer) => renderer.hit(layer, p.x, p.y));
   if (!layer) return;
   state.active = layer.key;
