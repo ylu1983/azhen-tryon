@@ -813,9 +813,6 @@ footer a {
   .mirror-heading {
     padding: 14px;
   }
-  .mirror {
-    max-height: 530px;
-  }
   .mirror-toolbar > span {
     display: block;
   }
